@@ -5,7 +5,7 @@ namespace ConsoleApplication2
     public abstract class ContainerBase
     {
         public double weightOfLoad => CalculateTotalWeight(); 
-        
+        private static int lastSerialNumber = 0;
         public double height { get; set; }
         
         public double containerWeight { get; set; }
@@ -23,7 +23,7 @@ namespace ConsoleApplication2
             this.height = height;
             this.containerWeight = containerWeight;
             this.deepness = deepness;
-            this.serialNumber = serialNumber;
+            this.serialNumber = GenerateSerialNumber();
             this.maxWeight = maxWeight;
             towars = new List<Product>();
         }
@@ -54,6 +54,12 @@ namespace ConsoleApplication2
         public override string ToString()
         {
             return serialNumber;
+        }
+        
+        private string GenerateSerialNumber()
+        {
+           
+            return $"CONT-{++lastSerialNumber:D6}"; 
         }
     }
 }

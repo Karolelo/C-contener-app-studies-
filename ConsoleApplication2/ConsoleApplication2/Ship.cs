@@ -12,24 +12,35 @@ namespace ConsoleApplication2
         public int maxContainerInside { get; set; }
         
         public int actuallyQuanityOfContainers { get; set; }
+        public int maxWageOfContainer { get; }
+        
+        public int acutallWage { get; }
+        
 
-        public Ship(string nameOfShip, int maxSpeed, int maxContainerInside)
+        public Ship(string nameOfShip, int maxSpeed, int maxContainerInside, int maxWageOfContainer)
         {
             this.nameOfShip = nameOfShip;
             this.maxSpeed = maxSpeed;
             this.maxContainerInside = maxContainerInside;
+            this.maxWageOfContainer = maxWageOfContainer;
+            acutallWage = 0;
             actuallyQuanityOfContainers = 0;
-        }
-
-        public Ship(string nameOfShip)
-        {
-            this.nameOfShip = nameOfShip;
             load = new List<ContainerBase>();
         }
 
+        public List<ContainerBase> unload()
+        {
+            var tmp = load;
+            load.Clear();
+            return tmp;
+        }
+
+        
+
         public void LoadContainer(ContainerBase containerBase)
         {
-            if (actuallyQuanityOfContainers < maxContainerInside)
+            
+            if ((actuallyQuanityOfContainers < maxContainerInside)&&((containerBase.weightOfLoad+containerBase.containerWeight)<maxWageOfContainer))
             {
                 actuallyQuanityOfContainers += 1;
                 load.Add(containerBase);
@@ -43,7 +54,9 @@ namespace ConsoleApplication2
         public void LoadContainers(List<ContainerBase> containerBases)
         {
             int size = containerBases.Count;
-            if (actuallyQuanityOfContainers+size < maxContainerInside)
+            double wageOfContainer = 0;
+            containerBases.ForEach(e => wageOfContainer = (e.containerWeight + e.weightOfLoad));
+            if ((actuallyQuanityOfContainers < maxContainerInside)&&(wageOfContainer<maxWageOfContainer))
             {
                 load.AddRange(containerBases);
             }
@@ -71,10 +84,16 @@ namespace ConsoleApplication2
 
             return null;
         }
+        
 
         public void showContainerList()
         {
             Console.WriteLine(load);
+        }
+
+        public override string ToString()
+        {
+            return nameOfShip + " load: " + load;
         }
     }        
 

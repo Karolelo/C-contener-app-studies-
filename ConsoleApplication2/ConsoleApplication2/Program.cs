@@ -6,10 +6,13 @@ namespace ConsoleApplication2
     {
         public static  void Main(string[] args)
         {
-            Ship ship = new Ship("alan");
-            FluidContainer fluidContainer = new FluidContainer(100,20,20,20,"bla bla",400);
-            
-            
+
+            ShippingService shp = new ShippingService();
+
+            shp.CreateShip("as", 10, 10, 1000);
+
+
+
         }
     }
 }
