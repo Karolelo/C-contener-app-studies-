@@ -18,7 +18,7 @@ namespace ConsoleApplication2
 
         public List<Product> towars { get; private set; }
 
-        protected ContainerBase(double height, double containerWeight, double deepness, string serialNumber, double maxWeight)
+        protected ContainerBase(double height, double containerWeight, double deepness, double maxWeight)
         {
             this.height = height;
             this.containerWeight = containerWeight;

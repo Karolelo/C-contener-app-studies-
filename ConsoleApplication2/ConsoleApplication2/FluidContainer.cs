@@ -7,7 +7,7 @@ namespace ConsoleApplication2
         private bool isDanger;
 
         public FluidContainer(double height, double containerWeight, double deepness,
-            string serialNumber, double maxWeight) : base(height, containerWeight, deepness, serialNumber, maxWeight)
+             double maxWeight) : base(height, containerWeight, deepness, maxWeight)
         {
         }
 

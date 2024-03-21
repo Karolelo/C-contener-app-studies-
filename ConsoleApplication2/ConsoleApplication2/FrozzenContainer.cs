@@ -8,8 +8,8 @@ namespace ConsoleApplication2
         private List<FrozenProduct> products;
         public double Temperature { get; set; }
 
-        public FrozzenContainer(double height, double containerWeight, double deepness, string serialNumber, double maxWeight, double temperature) 
-            : base(height, containerWeight, deepness, serialNumber, maxWeight)
+        public FrozzenContainer(double height, double containerWeight, double deepness, double maxWeight, double temperature) 
+            : base(height, containerWeight, deepness, maxWeight)
         {
             this.products = new List<FrozenProduct>();
             this.Temperature = temperature;

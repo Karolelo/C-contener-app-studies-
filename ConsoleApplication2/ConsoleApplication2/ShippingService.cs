@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+//Do dalszego rozwijania
 namespace ConsoleApplication2
 {
     public class ShippingService

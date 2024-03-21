@@ -10,8 +10,8 @@ namespace ConsoleApplication2
         public int pressure;
 
         public GasContainer(double height, double containerWeight, double deepness,
-            string serialNumber, double maxWeight,int pressure)
-            : base(height, containerWeight, deepness, serialNumber, maxWeight)
+             double maxWeight,int pressure)
+            : base(height, containerWeight, deepness, maxWeight)
         {
             this.pressure = pressure;
         }
