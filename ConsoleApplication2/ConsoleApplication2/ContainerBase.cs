@@ -4,39 +4,39 @@ namespace ConsoleApplication2
 {
     public abstract class ContainerBase
     {
-        public double WeightOfLoad => CalculateTotalWeight(); 
+        public double weightOfLoad => CalculateTotalWeight(); 
         
-        public double Height { get; set; }
+        public double height { get; set; }
         
-        public double ContainerWeight { get; set; }
+        public double containerWeight { get; set; }
         
-        public double Deepness { get; set; }
+        public double deepness { get; set; }
         
-        public string SerialNumber { get; set; }
+        public string serialNumber { get; set; }
         
-        public double MaxWeight { get; set; }
+        public double maxWeight { get; set; }
 
-        public List<Product> Towars { get; private set; }
+        public List<Product> towars { get; private set; }
 
         protected ContainerBase(double height, double containerWeight, double deepness, string serialNumber, double maxWeight)
         {
-            Height = height;
-            ContainerWeight = containerWeight;
-            Deepness = deepness;
-            SerialNumber = serialNumber;
-            MaxWeight = maxWeight;
-            Towars = new List<Product>();
+            this.height = height;
+            this.containerWeight = containerWeight;
+            this.deepness = deepness;
+            this.serialNumber = serialNumber;
+            this.maxWeight = maxWeight;
+            towars = new List<Product>();
         }
 
         public void UnloadContainer()
         {
-            Towars.Clear(); 
+            towars.Clear(); 
         }
 
         public void LoadContainer(Product product)
         {
-            if (( product.wage + CalculateTotalWeight()) <= MaxWeight)
-                Towars.Add(product);
+            if (( product.wage + CalculateTotalWeight()) <= maxWeight)
+                towars.Add(product);
             else
                 throw new OverFillException("Too much wage");
         }
@@ -44,7 +44,7 @@ namespace ConsoleApplication2
         public double CalculateTotalWeight()
         {
             double totalWeight = 0;
-            foreach (var product in Towars)
+            foreach (var product in towars)
             {
                 totalWeight += product.wage;
             }
@@ -53,7 +53,7 @@ namespace ConsoleApplication2
 
         public override string ToString()
         {
-            return SerialNumber;
+            return serialNumber;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Eventing.Reader;
 
 namespace ConsoleApplication2
 {
@@ -19,28 +20,35 @@ namespace ConsoleApplication2
         {
             double totalWeight = CalculateTotalWeight();
             double remainingWeight = totalWeight * 0.05;
-            Towars.Clear(); 
+            towars.Clear(); 
             
             if (remainingWeight > 0)
             {
-                Towars.Add(new Product( remainingWeight,"restOfGas"));
+                towars.Add(new Product( remainingWeight,"restOfGas"));
             }
         }
 
         public void LoadContainer(Product product)
         {
-            if(product.wage>)
+            if (product.wage < maxWeight)
+            {
+                towar = product;
+            }
+            else
+            {
+               informAboutDangerousSituation(); 
+            }
         }
 
         public void informAboutDangerousSituation()
         {
-            throw new OverFillException("Dangerous operation !!!");
+            throw new OverFillException("Dangerous operation !!!"+serialNumber);
         }
 
        
         public override string ToString()
         {
-            return $"Typ: Gas Container, Numer Seryjny: {SerialNumber}, Ciśnienie: {Pressure} atm";
+            return $"Typ: Gas Container, Numer Seryjny: {serialNumber}, Ciśnienie: {pressure} atm";
         }
     }
 }

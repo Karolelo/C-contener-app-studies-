@@ -13,17 +13,17 @@ namespace ConsoleApplication2
 
         public void InformAboutDangerousSituation()
         {
-            Console.WriteLine("Container " + SerialNumber + " is in danger");
+            Console.WriteLine("Container " + serialNumber + " is in danger");
         }
         
         public void LoadContainer(Product product, bool isDanger)
         {
             this.isDanger = isDanger;
-            double adjustedMaxWeight = isDanger ? MaxWeight * 0.5 : MaxWeight * 0.9;
+            double adjustedMaxWeight = isDanger ? maxWeight * 0.5 : maxWeight * 0.9;
             
             if ((product.wage + CalculateTotalWeight()) <= adjustedMaxWeight)
             {
-                Towars.Add(product);
+                towars.Add(product);
             }
             else
             {
@@ -33,12 +33,12 @@ namespace ConsoleApplication2
 
         public void informAboutDangerousSituation()
         {
-            throw new OverFillException("Dangerous operation !!!");
+            throw new OverFillException("Dangerous operation !!! "+serialNumber);
         }
 
         public override string ToString()
         {
-            return $"Typ: Fluid Container, Numer Seryjny: {SerialNumber}";
+            return $"Typ: Fluid Container, Numer Seryjny: {serialNumber}";
         }
     }
 }

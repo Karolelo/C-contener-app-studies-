@@ -18,9 +18,9 @@ namespace ConsoleApplication2
         {
             if (productType == this.TypeOfProduct && productTemperature <= this.Temperature)
             {
-                if (( product.wage + CalculateTotalWeight()) <= MaxWeight)
+                if (( product.wage + CalculateTotalWeight()) <= maxWeight)
                 {
-                    Towars.Add(product);
+                    towars.Add(product);
                 }
                 else
                 {
@@ -35,7 +35,7 @@ namespace ConsoleApplication2
 
         public override string ToString()
         {
-            return $"Type: Frozen Container, Serial Number: {SerialNumber}, Product Type: {TypeOfProduct}, Temperature: {Temperature}";
+            return $"Type: Frozen Container, Serial Number: {serialNumber}, Product Type: {TypeOfProduct}, Temperature: {Temperature}";
         }
     }
 }

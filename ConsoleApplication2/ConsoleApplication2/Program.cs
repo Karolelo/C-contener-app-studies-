@@ -8,9 +8,8 @@ namespace ConsoleApplication2
         {
             Ship ship = new Ship("alan");
             FluidContainer fluidContainer = new FluidContainer(100,20,20,20,"bla bla",400);
-            fluidContainer.loadContainer(300);
-            ship.LoadContainer(fluidContainer);
-            Console.WriteLine(fluidContainer);
+            
+            
         }
     }
 }

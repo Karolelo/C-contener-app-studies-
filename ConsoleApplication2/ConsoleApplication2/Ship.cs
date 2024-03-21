@@ -53,12 +53,12 @@ namespace ConsoleApplication2
             }
         }
 
-        public ContainerBase getContainer(String serialNumber)
+        public ContainerBase GetContainer(String serialNumber)
         {
             return load.FirstOrDefault(container => container.serialNumber == serialNumber);
         }
 
-        public ContainerBase changeContainer(String serialNumber,ContainerBase newContainer)
+        public ContainerBase ChangeContainer(String serialNumber,ContainerBase newContainer)
         {
             int index = load.FindIndex(container => container.serialNumber == serialNumber);
             
