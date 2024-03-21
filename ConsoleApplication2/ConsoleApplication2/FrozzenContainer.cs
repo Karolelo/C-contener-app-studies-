@@ -4,13 +4,38 @@ namespace ConsoleApplication2
 {
     public class FrozzenContainer : ContainerBase
     {
-        public String typeOfProduct { set; get; }
-        public double tempreature { set; get; }
+        public string TypeOfProduct { get; set; }
+        public double Temperature { get; set; }
 
-        public FrozzenContainer(double weightOfload, double height, double containerWeight, double deepness, double serialNumber, double maxWeight, string typeOfProduct, double tempreature) : base(weightOfload, height, containerWeight, deepness, serialNumber, maxWeight)
+        public FrozzenContainer(double height, double containerWeight, double deepness, string serialNumber, double maxWeight, string typeOfProduct, double temperature) 
+            : base(height, containerWeight, deepness, serialNumber, maxWeight)
         {
-            this.typeOfProduct = typeOfProduct;
-            this.tempreature = tempreature;
+            this.TypeOfProduct = typeOfProduct;
+            this.Temperature = temperature;
+        }
+        
+        public void LoadContainer(Product product, string productType, double productTemperature)
+        {
+            if (productType == this.TypeOfProduct && productTemperature <= this.Temperature)
+            {
+                if (( product.wage + CalculateTotalWeight()) <= MaxWeight)
+                {
+                    Towars.Add(product);
+                }
+                else
+                {
+                    throw new OverFillException("Too much weight");
+                }
+            }
+            else
+            {
+                throw new InvalidOperationException("Product type or temperature is not suitable for this container.");
+            }
+        }
+
+        public override string ToString()
+        {
+            return $"Type: Frozen Container, Serial Number: {SerialNumber}, Product Type: {TypeOfProduct}, Temperature: {Temperature}";
         }
     }
 }

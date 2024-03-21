@@ -2,32 +2,43 @@
 
 namespace ConsoleApplication2
 {
-    public class FluidContainer : ContainerBase,IHazardNotifier
+    public class FluidContainer : ContainerBase, IHazardNotifier
     {
-        private Boolean isDanger;
+        private bool isDanger;
 
-        public FluidContainer(double weightOfload, double height, double containerWeight, double deepness,
-            double serialNumber, double maxWeight) : base(weightOfload, height, containerWeight, deepness, serialNumber,
-            maxWeight)
+        public FluidContainer(double height, double containerWeight, double deepness,
+            string serialNumber, double maxWeight) : base(height, containerWeight, deepness, serialNumber, maxWeight)
         {
-            
         }
-        public void informAboutDangerousSituation()
+
+        public void InformAboutDangerousSituation()
         {
-            Console.WriteLine("Container "+serialNumber+" is in danger");
+            Console.WriteLine("Container " + SerialNumber + " is in danger");
         }
         
-        public void loadContainer( double MassToLoad, Boolean isDanger )
+        public void LoadContainer(Product product, bool isDanger)
         {
             this.isDanger = isDanger;
-            if (this.isDanger&&((containerWeight + MassToLoad)) < MaxWeight*0.5)
-                containerWeight += MassToLoad;
-            else if (!this.isDanger&&((containerWeight + MassToLoad)) < MaxWeight*0.9)
-                containerWeight += MassToLoad;
+            double adjustedMaxWeight = isDanger ? MaxWeight * 0.5 : MaxWeight * 0.9;
+            
+            if ((product.wage + CalculateTotalWeight()) <= adjustedMaxWeight)
+            {
+                Towars.Add(product);
+            }
             else
             {
-                throw new OverFillException("Dangerous operation !!!");
+                informAboutDangerousSituation();
             }
+        }
+
+        public void informAboutDangerousSituation()
+        {
+            throw new OverFillException("Dangerous operation !!!");
+        }
+
+        public override string ToString()
+        {
+            return $"Typ: Fluid Container, Numer Seryjny: {SerialNumber}";
         }
     }
 }

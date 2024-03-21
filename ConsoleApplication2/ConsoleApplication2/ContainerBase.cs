@@ -1,45 +1,59 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 namespace ConsoleApplication2
 {
-
     public abstract class ContainerBase
     {
-        public double weightOfload { get; set; }
+        public double WeightOfLoad => CalculateTotalWeight(); 
         
-        public double height { get; set; }
+        public double Height { get; set; }
         
-        public double containerWeight { get; set; }
+        public double ContainerWeight { get; set; }
         
-        public double deepness { get; set; }
+        public double Deepness { get; set; }
         
-        public double serialNumber { get; set; }
+        public string SerialNumber { get; set; }
         
         public double MaxWeight { get; set; }
 
-        protected ContainerBase(double weightOfload, double height, double containerWeight, double deepness, double serialNumber, double maxWeight)
+        public List<Product> Towars { get; private set; }
+
+        protected ContainerBase(double height, double containerWeight, double deepness, string serialNumber, double maxWeight)
         {
-            this.weightOfload = weightOfload;
-            this.height = height;
-            this.containerWeight = containerWeight;
-            this.deepness = deepness;
-            this.serialNumber = serialNumber;
+            Height = height;
+            ContainerWeight = containerWeight;
+            Deepness = deepness;
+            SerialNumber = serialNumber;
             MaxWeight = maxWeight;
+            Towars = new List<Product>();
         }
 
         public void UnloadContainer()
         {
-            weightOfload = 0;
+            Towars.Clear(); 
         }
 
-        public void loadContainer( double MassToLoad )
+        public void LoadContainer(Product product)
         {
-            if ((containerWeight + MassToLoad) < MaxWeight)
-                containerWeight += MassToLoad;
+            if (( product.wage + CalculateTotalWeight()) <= MaxWeight)
+                Towars.Add(product);
             else
                 throw new OverFillException("Too much wage");
-            
         }
-       
+
+        public double CalculateTotalWeight()
+        {
+            double totalWeight = 0;
+            foreach (var product in Towars)
+            {
+                totalWeight += product.wage;
+            }
+            return totalWeight;
+        }
+
+        public override string ToString()
+        {
+            return SerialNumber;
+        }
     }
 }
