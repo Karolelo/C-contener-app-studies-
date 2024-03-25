@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace ConsoleApplication2
 {
@@ -90,11 +91,26 @@ namespace ConsoleApplication2
         {
             Console.WriteLine(load);
         }
-
         public override string ToString()
         {
-            return nameOfShip + " load: " + load;
+            
+            var shipInfo = new StringBuilder($"Ship Name: {nameOfShip}\n");
+            shipInfo.AppendLine($"Max Speed: {maxSpeed} knots");
+            shipInfo.AppendLine($"Max Container Capacity: {maxContainerInside}");
+            shipInfo.AppendLine($"Currently Loaded Containers: {actuallyQuanityOfContainers}");
+            shipInfo.AppendLine($"Max Weight Per Container: {maxWageOfContainer}");
+    
+            
+            shipInfo.AppendLine("Loaded Containers:");
+            foreach (var container in load)
+            {
+                shipInfo.AppendLine($"- Container Serial: {container.serialNumber}, Weight of Load: {container.weightOfLoad}, Container Weight: {container.containerWeight}, Total Weight: {container.weightOfLoad + container.containerWeight}");
+            }
+
+            
+            return shipInfo.ToString();
         }
+        
     }        
 
 }

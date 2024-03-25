@@ -12,6 +12,7 @@ namespace ConsoleApplication2
             Ship ship=shp.CreateShip("as", 10, 10, 1000);
 
             FluidContainer test = new FluidContainer(10, 200, 12, 200);
+            ship.LoadContainer(test);
             Product testproduct = new Product(100, "Banan");
             test.LoadContainer(testproduct);
             Console.WriteLine(test); 
@@ -19,6 +20,7 @@ namespace ConsoleApplication2
             Product testproduct2 = new Product(150, "Banan");
             test2.LoadContainer(testproduct2);
             Console.WriteLine(test2);
+            Console.WriteLine(ship);
             
 
         }
